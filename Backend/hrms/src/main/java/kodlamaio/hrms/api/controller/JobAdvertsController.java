@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin
 @RequestMapping("/api/jobAdverts")
 @RestController
 public class JobAdvertsController {

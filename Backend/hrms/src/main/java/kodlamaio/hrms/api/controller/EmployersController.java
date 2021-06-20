@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/employers")
 public class EmployersController {
@@ -31,7 +32,7 @@ public class EmployersController {
         return employerService.register(employer);
     }
 
-    @PostMapping("/verifyAccountByVerificatinCode")
+    @PostMapping("/verifyAccountByVerificationCode")
     public Result verifyAccount(@RequestBody UserForVerifyVerificationCode user){
         return employerService.verifyAccountByVerificationCode(user.getEmail(),user.getCode());
     }
