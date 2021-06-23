@@ -25,6 +25,7 @@ export default function Navi() {
             </NavDropdown>
           </Nav>
         
+        {/* Account session , it will change when you logged in */}
         <Login/>
          {/* <Signup/> */}
           

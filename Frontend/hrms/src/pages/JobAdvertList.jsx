@@ -5,6 +5,9 @@ import JobAdvertService from '../services/jobAdvertService'
 export default function JobAdvertList() {
     const [jobAdverts, setJobAdverts] = useState([])
 
+
+    //componentDidMount ve componentDidUpdate birleşimi
+    //[] kısmı aslında componentDidUpdate kısmıdır
     useEffect(()=>{
         let jobAdvertService = new JobAdvertService()
         jobAdvertService.getJobAdverts().then(result=>setJobAdverts(result.data.data))
