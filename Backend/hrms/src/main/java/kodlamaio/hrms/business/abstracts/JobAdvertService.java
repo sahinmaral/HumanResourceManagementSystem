@@ -13,9 +13,9 @@ public interface JobAdvertService extends BaseService<JobAdvert> {
     Result disableById(int jobAdvertId);
     Result enableById(int jobAdvertId);
     DataResult<List<JobAdvert>> getActivatedAdverts();
-    DataResult<JobAdvert> getById(int jobAdvertId);
+    DataResult<JobAdvertDto> getJobAdvertById(int jobAdvertId);
     DataResult<List<JobAdvertDto>> getAllAdsByDetails();
-    DataResult<List<JobAdvertDto>> getAllPassiveAdsByDetails();
+    DataResult<List<JobAdvertDto>> getAllActiveAdsByDetails();
     DataResult<List<JobAdvertDto>> getAllActiveAdsByDeadline(LocalDate deadline);
     DataResult<List<JobAdvertDto>> getAllActiveAdsByEmployerId(int employerId);
 }

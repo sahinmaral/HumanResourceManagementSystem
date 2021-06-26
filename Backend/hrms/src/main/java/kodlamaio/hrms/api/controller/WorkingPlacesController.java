@@ -1,27 +1,29 @@
 package kodlamaio.hrms.api.controller;
 
-import kodlamaio.hrms.business.abstracts.WorkingTimeService;
+import kodlamaio.hrms.business.abstracts.WorkingPlaceService;
 import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
-import kodlamaio.hrms.entities.concretes.WorkingTime;
+import kodlamaio.hrms.entities.concretes.WorkingPlace;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/api/workingTimes")
+@CrossOrigin
+@RequestMapping("/api/workingPlaces")
 @RestController
-public class WorkingTimesController {
-    public WorkingTimesController(WorkingTimeService workingTimeService) {
-        this.workingTimeService = workingTimeService;
+public class WorkingPlacesController {
+    public WorkingPlacesController(WorkingPlaceService workingPlaceService) {
+        this.workingPlaceService = workingPlaceService;
     }
 
-    private WorkingTimeService workingTimeService;
+    private WorkingPlaceService workingPlaceService;
 
     @GetMapping("/getAll")
-    public DataResult<List<WorkingTime>> getAll(){
-        return new SuccessDataResult<List<WorkingTime>>(workingTimeService.getAll().getData());
+    public DataResult<List<WorkingPlace>> getAll(){
+        return new SuccessDataResult<List<WorkingPlace>>(workingPlaceService.getAll().getData());
     }
 
 }

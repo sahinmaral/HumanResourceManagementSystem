@@ -43,6 +43,14 @@ public class JobAdvert {
     @JoinColumn(name="job_position_id")
     private JobPosition jobPositions;
 
+    @ManyToOne()
+    @JoinColumn(name="working_time_id")
+    private WorkingTime workingTimes;
+
+    @ManyToOne()
+    @JoinColumn(name="working_place_id")
+    private WorkingPlace workingPlaces;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @FutureOrPresent
     @Column(name="deadline")
@@ -63,6 +71,9 @@ public class JobAdvert {
     @Column(name="is_active")
     private boolean isActive = true;
 
+    @Column(name="is_verified")
+    private boolean isVerified = false;
+
     public boolean getActive(){
         return this.isActive;
     }
@@ -71,4 +82,11 @@ public class JobAdvert {
         this.isActive = isActive;
     }
 
+    public boolean getVerified(){
+        return this.isVerified;
+    }
+
+    public void setVerified(boolean isVerified){
+        this.isVerified = isVerified;
+    }
 }

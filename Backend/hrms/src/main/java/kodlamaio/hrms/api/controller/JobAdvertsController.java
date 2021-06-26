@@ -1,14 +1,11 @@
 package kodlamaio.hrms.api.controller;
 
-import io.swagger.annotations.ApiParam;
-import kodlamaio.hrms.business.abstracts.CityService;
 import kodlamaio.hrms.business.abstracts.JobAdvertService;
-import kodlamaio.hrms.business.constants.Messages;
-import kodlamaio.hrms.core.utilities.result.*;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.core.utilities.result.DataResult;
+import kodlamaio.hrms.core.utilities.result.Result;
+import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.dtos.JobAdvertDto;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +32,9 @@ public class JobAdvertsController {
         return new SuccessDataResult<List<JobAdvertDto>>(jobAdvertService.getAllAdsByDetails().getData());
     }
 
-    @GetMapping("/getAlPassiveAdsByDetails")
-    public DataResult<List<JobAdvertDto>> getAllPassiveAdsByDetails() {
-        return new SuccessDataResult<List<JobAdvertDto>>(jobAdvertService.getAllPassiveAdsByDetails().getData());
+    @GetMapping("/getAllActiveAdsByDetails")
+    public DataResult<List<JobAdvertDto>> getAllActiveAdsByDetails() {
+        return new SuccessDataResult<List<JobAdvertDto>>(jobAdvertService.getAllActiveAdsByDetails().getData());
     }
 
     @GetMapping("/getAllActiveAdsByDeadline")
@@ -56,6 +53,14 @@ public class JobAdvertsController {
         return new SuccessDataResult<List<JobAdvertDto>>
                 (jobAdvertService.getAllActiveAdsByEmployerId(employerId).getData());
     }
+
+    @GetMapping("/getJobAdvertById")
+    public DataResult<JobAdvertDto> getJobAdvertById(@RequestParam int id)
+    {
+        return new SuccessDataResult<JobAdvertDto>
+                (jobAdvertService.getJobAdvertById(id).getData());
+    }
+
 
     @PostMapping("/disableById")
     public Result disableById(@RequestParam int jobAdvertId) {

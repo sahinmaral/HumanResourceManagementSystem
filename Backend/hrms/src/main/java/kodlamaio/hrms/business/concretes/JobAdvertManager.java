@@ -110,21 +110,21 @@ public class JobAdvertManager implements JobAdvertService {
     }
 
     @Override
-    public DataResult<JobAdvert> getById(int jobAdvertId) {
-        return new SuccessDataResult<JobAdvert>(jobAdvertDao.getById(jobAdvertId));
+    public DataResult<JobAdvertDto> getJobAdvertById(int jobAdvertId) {
+        return new SuccessDataResult<JobAdvertDto>(jobAdvertDao.getJobAdvertById(jobAdvertId));
     }
 
 
     @Override
-    public DataResult<List<JobAdvertDto>> getAllPassiveAdsByDetails() {
+    public DataResult<List<JobAdvertDto>> getAllActiveAdsByDetails() {
         return new SuccessDataResult<List<JobAdvertDto>>
-                (jobAdvertDao.getAllPassiveAdsByDetails(), Messages.SuccessfullyRetrieved);
+                (jobAdvertDao.getAllActiveAdsByDetails(), Messages.SuccessfullyRetrieved);
     }
 
     @Override
     public DataResult<List<JobAdvertDto>> getAllActiveAdsByDeadline(LocalDate deadline) {
         return new SuccessDataResult<List<JobAdvertDto>>
-                (jobAdvertDao.getAllActiveAdsByDeadlineIs(deadline), Messages.SuccessfullyRetrieved);
+                (jobAdvertDao.getAllActiveAdsByDeadline(deadline), Messages.SuccessfullyRetrieved);
     }
 
     @Override

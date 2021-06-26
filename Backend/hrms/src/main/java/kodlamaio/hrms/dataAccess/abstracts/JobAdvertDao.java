@@ -1,6 +1,5 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 import kodlamaio.hrms.entities.dtos.JobAdvertDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,40 +15,66 @@ public interface JobAdvertDao extends JpaRepository<JobAdvert,Integer> {
     @Query("SELECT new kodlamaio.hrms.entities.dtos.JobAdvertDto" +
             "(ja.id,e.companyName,ja.maxSalary,ja.minSalary," +
             "c.name,ja.deadline,ja.publishedDate,ja.countOfReceivableCandidate," +
-            "ja.jobRequirements,jb.title,ja.isActive)" +
+            "ja.jobRequirements,jb.title,ja.isActive,ja.isVerified,wt.name,wp.name)" +
             "FROM JobAdvert ja " +
             "INNER JOIN ja.jobPositions jb " +
             "INNER JOIN ja.cities c " +
-            "INNER JOIN ja.employers e")
+            "INNER JOIN ja.employers e " +
+            "INNER JOIN ja.workingTimes wt " +
+            "INNER JOIN ja.workingPlaces wp " )
    List<JobAdvertDto> getAllAdsByDetails();
 
     @Query("SELECT new kodlamaio.hrms.entities.dtos.JobAdvertDto" +
-            "(ja.id,e.companyName, ja.maxSalary,ja.minSalary," +
-            "c.name,ja.publishedDate,ja.deadline,ja.countOfReceivableCandidate,ja.jobRequirements,jb.title,ja.isActive)" +
+            "(ja.id,e.companyName,ja.maxSalary,ja.minSalary," +
+            "c.name,ja.deadline,ja.publishedDate,ja.countOfReceivableCandidate," +
+            "ja.jobRequirements,jb.title,ja.isActive,ja.isVerified,wt.name,wp.name)" +
             "FROM JobAdvert ja " +
             "INNER JOIN ja.jobPositions jb " +
             "INNER JOIN ja.cities c " +
             "INNER JOIN ja.employers e " +
-            "WHERE ja.isActive=false")
-    List<JobAdvertDto> getAllPassiveAdsByDetails();
+            "INNER JOIN ja.workingTimes wt " +
+            "INNER JOIN ja.workingPlaces wp " +
+            "WHERE ja.id=:id" )
+    JobAdvertDto getJobAdvertById(int id);
 
     @Query("SELECT new kodlamaio.hrms.entities.dtos.JobAdvertDto" +
-            "(ja.id,e.companyName, ja.maxSalary,ja.minSalary," +
-            "c.name,ja.publishedDate,ja.deadline,ja.countOfReceivableCandidate,ja.jobRequirements,jb.title,ja.isActive)" +
+            "(ja.id,e.companyName,ja.maxSalary,ja.minSalary," +
+            "c.name,ja.deadline,ja.publishedDate,ja.countOfReceivableCandidate," +
+            "ja.jobRequirements,jb.title,ja.isActive,ja.isVerified,wt.name,wp.name)" +
             "FROM JobAdvert ja " +
             "INNER JOIN ja.jobPositions jb " +
             "INNER JOIN ja.cities c " +
             "INNER JOIN ja.employers e " +
+            "INNER JOIN ja.workingTimes wt " +
+            "INNER JOIN ja.workingPlaces wp " +
+            "WHERE ja.isActive=true and ja.isVerified=true")
+    List<JobAdvertDto> getAllActiveAdsByDetails();
+
+
+    @Query("SELECT new kodlamaio.hrms.entities.dtos.JobAdvertDto" +
+            "(ja.id,e.companyName,ja.maxSalary,ja.minSalary," +
+            "c.name,ja.deadline,ja.publishedDate,ja.countOfReceivableCandidate," +
+            "ja.jobRequirements,jb.title,ja.isActive,ja.isVerified,wt.name,wp.name)" +
+            "FROM JobAdvert ja " +
+            "INNER JOIN ja.jobPositions jb " +
+            "INNER JOIN ja.cities c " +
+            "INNER JOIN ja.employers e " +
+            "INNER JOIN ja.workingTimes wt " +
+            "INNER JOIN ja.workingPlaces wp " +
             "WHERE ja.deadline=:deadline")
-    List<JobAdvertDto> getAllActiveAdsByDeadlineIs(LocalDate deadline);
+    List<JobAdvertDto> getAllActiveAdsByDeadline(LocalDate deadline);
+
 
     @Query("SELECT new kodlamaio.hrms.entities.dtos.JobAdvertDto" +
-            "(ja.id,e.companyName, ja.maxSalary,ja.minSalary," +
-            "c.name,ja.publishedDate,ja.deadline,ja.countOfReceivableCandidate,ja.jobRequirements,jb.title,ja.isActive)" +
+            "(ja.id,e.companyName,ja.maxSalary,ja.minSalary," +
+            "c.name,ja.deadline,ja.publishedDate,ja.countOfReceivableCandidate," +
+            "ja.jobRequirements,jb.title,ja.isActive,ja.isVerified,wt.name,wp.name)" +
             "FROM JobAdvert ja " +
             "INNER JOIN ja.jobPositions jb " +
             "INNER JOIN ja.cities c " +
             "INNER JOIN ja.employers e " +
+            "INNER JOIN ja.workingTimes wt " +
+            "INNER JOIN ja.workingPlaces wp " +
             "WHERE e.id=:employerId AND ja.isActive=true")
     List<JobAdvertDto> getAllActiveAdsByEmployerId(int employerId);
 

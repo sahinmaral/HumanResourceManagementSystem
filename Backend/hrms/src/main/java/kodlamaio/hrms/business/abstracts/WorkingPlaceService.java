@@ -1,6 +1,6 @@
 package kodlamaio.hrms.business.abstracts;
 
-import kodlamaio.hrms.entities.concretes.WorkingTime;
+import kodlamaio.hrms.entities.concretes.WorkingPlace;
 
-public interface WorkingTimeService extends BaseService<WorkingTime>{
+public interface WorkingPlaceService extends BaseService<WorkingPlace>{
 }

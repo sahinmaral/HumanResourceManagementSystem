@@ -1,8 +1,6 @@
 package kodlamaio.hrms.business.abstracts;
 
-import kodlamaio.hrms.core.utilities.result.Result;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.entities.concretes.WorkingTime;
 
-public interface CityService extends BaseService<City>{
-    Result add(City city);
+public interface WorkingTimeService extends BaseService<WorkingTime>{
 }

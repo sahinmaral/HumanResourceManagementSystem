@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
 
+import kodlamaio.hrms.entities.concretes.WorkingTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,8 @@ public class JobAdvertDto {
     private String jobRequirements;
     private String jobPositionName;
     private boolean isActive;
+    private boolean isVerified;
+    private String workingTime;
+    private String workingPlace;
+
 }

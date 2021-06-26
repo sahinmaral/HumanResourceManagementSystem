@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="working_places")
 
-public class WorkingPlaces {
+public class WorkingPlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -24,7 +25,11 @@ public class WorkingPlaces {
     @Column(name="name", unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "workingPlaces" , fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "workingPlaces" ,
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true )
     private List<JobAdvert> jobAdvert;
 
 }
