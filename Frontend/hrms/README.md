@@ -1,3 +1,13 @@
+<details>
+<summary> <h1>AddJobAdvertisement </h1>
+</summary>
+
+![First Picture](https://github.com/sahinmaral/HumanResourceManagementSystem/blob/main/Frontend/screenshots/addJobAdvertisement.png?raw=true)
+
+![Second Picture](https://github.com/sahinmaral/HumanResourceManagementSystem/blob/main/Frontend/screenshots/addJobAdvertisement_2.png?raw=true)
+
+</details>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
